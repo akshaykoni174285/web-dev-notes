@@ -1,0 +1,8 @@
+
+#title { 
+  background-image: linear-gradient(300deg, #00bfff, #ff4c68, #ef8172);
+}
+
+#title > .container {
+  padding-top: 5rem;
+}
