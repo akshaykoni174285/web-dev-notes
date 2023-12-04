@@ -16,9 +16,7 @@ app.get("/", (req, res) => {
 
 app.post("/submit", (req, res) => { 
   const wordlen = req.body["fName"].length + req.body["lName"].length;
-  res.render("index.ejs", {
-    wordlen: wordlen,
-  })
+  res.send(`<h1>${wordlen}</h1>`);
 });
 
 app.listen(port, () => {
