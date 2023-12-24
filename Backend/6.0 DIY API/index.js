@@ -9,8 +9,44 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 //1. GET a random joke
 
+app.get('/random', function (req, res) {
+  const randomIndex = Math.floor(Math.random() * jokes.length);
+  res.json(jokes[randomIndex]);
+})
+
 //2. GET a specific joke
 
+app.get('/jokes/:id', (req, res) => {
+  const paramInt = parseInt(req.params.id);
+  const joke = jokes.find(joke => joke.id === paramInt);
+  
+  if (joke){
+    res.json(joke)
+  }
+  else{
+    res.status(404).json({error: 'joke not found'});
+  }
+});
+
+
+// app.get("/filter", (req, res) => {
+//   const type = req.query.type;
+//   const filteredActivities = jokes.filter((joke) => joke.jokeType === type);
+//   res.json(filteredActivities);
+// });
+
+
+app.get('/filter/:type', (req, res) => {
+  const paraString = req.params.type;
+  const foundjoke = jokes.filter((joke) => joke.jokeType === paraString);
+  if (foundjoke){
+    res.json(foundjoke)
+  }
+  else {
+    res.status(404).json({error: 'joke not found'});
+  }
+
+})
 //3. GET a jokes by filtering on the joke type
 
 //4. POST a new joke
