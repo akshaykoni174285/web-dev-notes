@@ -18,12 +18,16 @@ app.get('/', (req, res) => {
     res.sendFile(__dirname + '/public/index.html');
 
 })
+
 app.post('/check', (req,res) => {
-    if (req.body['pass'] === 'ILoveProgramming'){
+    
+    if (req.body['password'] === 'ILoveProgramming'){
         res.sendFile(__dirname + '/public/secret.html');
     }
     else{
         res.sendFile(__dirname + '/public/index.html');
+        // res.sendFile(__dirname) + '/public/idnex.html'
+
     }
     
 })
