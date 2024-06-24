@@ -6,13 +6,15 @@ const app = express();
 const port = 3000;
 const API_URL = "https://secrets-api.appbrewery.com";
 
+
 // HINTs: Use the axios documentation as well as the video lesson to help you.
 // https://axios-http.com/docs/post_example
 // Use the Secrets API documentation to figure out what each route expects and how to work with it.
 // https://secrets-api.appbrewery.com/
 
+app.set('view engine', 'ejs')
 //TODO 1: Add your own bearer token from the previous lesson.
-const yourBearerToken = "";
+const yourBearerToken = "53668f06-2464-4441-9ca3-5ceda4566569";
 const config = {
   headers: { Authorization: `Bearer ${yourBearerToken}` },
 };
@@ -34,6 +36,18 @@ app.post("/get-secret", async (req, res) => {
 });
 
 app.post("/post-secret", async (req, res) => {
+  const embscore = req.body.score;
+  const secret = req.body.secret;
+  const body = {
+    'secret': secret,
+    'score': embscore
+  }
+  try {
+    const result = await axios.post(API_URL+'/secrets',body,config)
+    res.render('index',{content:"sucessfully posted the sercret"})
+  } catch (error) {
+    res.render("index",{content: JSON.stringify(error.response)})
+  }
   // TODO 2: Use axios to POST the data from req.body to the secrets api servers.
 });
 
