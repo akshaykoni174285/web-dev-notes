@@ -16,7 +16,7 @@ app.get('/', (req, res) =>{
 
 app.post('/submit',(req, res) =>{
   
-  console.log('<h1>${req.body.name} ${req.body.petname}</h1>');
+  console.log('<h1>$req.body.name ${req.body.petname}</h1>');
 })
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);
